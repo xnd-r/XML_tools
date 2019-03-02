@@ -1,0 +1,32 @@
+
+let a=293; 
+for file in *.png;
+ do name_xml=$file;
+ name_png=`basename $file .xml`.png;
+ echo $name_png; echo $name_xml;
+ new_name_xml=`printf "pan2_%d.png" "$a"`;
+ new_name_png=`printf "pan2_%d.png" "$a"`;
+ mv $name_xml $new_name_xml;
+ mv $name_png $new_name_png;
+ let a=a+1;
+ done;
+
+
+
+
+переименовывает в pan2_294.png
+
+sed -i `s/GPan/pan2/g` *.xml
+
+ 
+for file in *.png;
+ do name_png=$file;
+ name_xml=`basename $file .png`.xml;
+ new_name_xml=`printf "fpan2_%s" "$name_xml"`;
+ new_name_png=`printf "fpan2_%s" "$name_png"`;
+ echo $new_name_png;
+ if [ -f "$name_xml" ]; then  echo $new_name_xml; mv $name_xml $new_name_xml; fi
+ mv $name_png $new_name_png;
+done;
+
+let a=0; for file in fpan1_???.xml; name_xml=`printf "pan2_%d.png" "$a"`; echo $name_xml; name_png=`basename $file .xml`.png; if [ -f "$name_xml" ]; then  echo $name_png; fi; let a=a+1; done;
